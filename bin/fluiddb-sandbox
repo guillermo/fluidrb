@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+system "irb -f -r irb/completion -r irb/ext/save-history  -r #{File.join(File.dirname(__FILE__),"..","lib","fluiddb")} -r fluiddb/console/sandbox --prompt simple --readline"
