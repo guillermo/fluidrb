@@ -8,7 +8,7 @@ module FluidDB
     # FluidDB::Object.create!
     # FluidDB::Object.create!(:about => 'Cocacola')
     def self.create!(opts = {})
-      new_object = new(opts.merge(:path => '/objects')).post!(opts)
+      new(opts.merge(:path => '/objects')).post!(opts)
     end
     
     def self.find(query)      
@@ -55,8 +55,10 @@ module FluidDB
     
     # Return an array of names that that object contains
     def tags
-      fetch! if self.tagPaths.nil?
-      self.tagPaths
+      @table[:tagPaths] || fetch
+      @table[:tagPaths].map do |tag|
+        Object.new(:path => @table[:path]+'/'+tag)
+      end
     end
     
   end

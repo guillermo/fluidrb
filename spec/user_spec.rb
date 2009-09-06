@@ -9,6 +9,6 @@ describe FluidDB::User do
   end
   
   it 'should raise an error if an User doesn\'t exists' do
-    lambda { FluidDB::User.find('probablyanonexistinguser') }.should raise_error (FluidDB::Error)
+    lambda { FluidDB::User.find('probablyanonexistinguser') }.should raise_error(FluidDB::Error)
   end
 end

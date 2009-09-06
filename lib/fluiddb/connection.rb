@@ -30,7 +30,7 @@ module FluidDB
         data = res.body if res.body
       end
       $stderr << "#{res.code}: #{data.inspect}\n" if $debug
-      raise FluidDB::Error.new(data) unless [200,201,204].include? (res.code.to_i)
+      raise FluidDB::Error.new(data) unless [200,201,204].include?(res.code.to_i)
       
       data
     end

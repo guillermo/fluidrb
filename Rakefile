@@ -42,19 +42,38 @@ begin
   require 'echoe'
   require File.join(File.dirname(__FILE__),'lib','fluiddb','version.rb')
   
-  Echoe.new('fluidrb') do |p|
-    p.description    = "Ruby FluidDB Api"
+  Echoe.new('fluidrb',FluidDB::VERSION) do |p|
+    # p.description    = "Ruby FluidDB Api"
     p.summary        = "Ruby api for access to FluidDB Api"
     p.url            = "http://wiki.github.com/guillermo/fluidrb"
     p.author         = "Guillermo Álvarez"
-    p.email          = "guillermo@cientifico.net"
-    p.version        = FluidDB::VERSION
+    # p.email          = "guillermo@cientifico.net"
+    # p.version        = FluidDB::VERSION
     #p.docs_host
     #p.rdoc_pattern
-    p.runtime_dependencies = ["json > 1.1.4"]
-    p.ignore_pattern = FileList[".gitignore"]
+    p.runtime_dependencies = ["json >= 1.1.3"]
+    # p.ignore_pattern = FileList[".gitignore"]
     
   end
+  
+  desc 'Prepare, commit and push to github'
+  task :deploy => [:spec, :clean, :clobber, :git_clean, :manifest, :build_gemspec,:commit,:push]
+  
+  task :push do
+    puts "Uploading changes"
+    `git push origin `
+  end
+  
+  task :git_clean do 
+    puts 'Removing ignored files'
+    puts `git clean -fX`
+  end
+  
+  task :commit do
+    `git add . && git commit -m "Automatic build for #{FluidDB::VERSION}"`
+  end
+  
+  task 'build_gemspec'
   
   
 rescue LoadError

@@ -7,7 +7,7 @@ describe FluidDB::Tag do
     FluidDB::Tag.create!("test/#{name}",'description')
     
     tag = FluidDB::Tag.find("test/#{name}")
-    tag.should be_kind_of FluidDB::Tag
+    tag.should be_kind_of(FluidDB::Tag)
     tag.description.should == 'description'
   end
   
@@ -46,7 +46,7 @@ describe FluidDB::Tag do
       name = generate_uniq
       tag = FluidDB::Tag.create!("test/#{name}",'description')
       tag.destroy!.should == true
-      lambda{ tag.destroy! }.should raise_error( FluidDB::Error )
+      lambda{ tag.destroy! }.should raise_error( FluidDB::Error)
     end
   end
   

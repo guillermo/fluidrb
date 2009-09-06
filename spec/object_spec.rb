@@ -1,6 +1,9 @@
 require File.join(File.dirname(__FILE__),'spec_helper')
 
 describe FluidDB::Object do
+  before(:all) do
+    FDB::Tag.create!('test/opinion','opinion tag') rescue nil
+  end
   
   it 'should create an Object' do
     about = generate_uniq
@@ -15,8 +18,16 @@ describe FluidDB::Object do
     message = 'These is a "really good" object'
     o.test.opinion =  message
     
-    (o / "test/opinion").value.should == message
+    (o / "test/opinion").should == message
     o.test.opinion.value.should == message
+  end
+  
+  it 'should return tags' do
+    about = generate_uniq
+    obj = FluidDB::Object.create!(:about => about)
+    obj.tags.each do |t|
+      t.should be_kind_of(FluidDB::Object)
+    end
   end
   
   it 'should find objects' do
