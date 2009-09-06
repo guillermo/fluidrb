@@ -23,29 +23,29 @@ Todo
 Spec Coverage
 -------------
 
-  FluidDB::Namespace
-    should find the user namespace
-    should create a new namespace
-    should edit namespace
-    should remove namespaces
-    should raise error
-      on create if already exists
-      on remove if no exists
-  FluidDB::Object
-    should create an Object
-    should read and write tags
-    should find objects
-  FluidDB::Tag
-    should be able to find
-    should create a new tag
-    should edit a tag
-    should remove a tag
-    should raise error
-      on create if already exists
-      on remove if no exists
-  FluidDB::User
-    should return an User if exists
-    should raise an error if an User doesn't exists
+    FluidDB::Namespace
+      should find the user namespace
+      should create a new namespace
+      should edit namespace
+      should remove namespaces
+      should raise error
+        on create if already exists
+        on remove if no exists
+    FluidDB::Object
+      should create an Object
+      should read and write tags
+      should find objects
+    FluidDB::Tag
+      should be able to find
+      should create a new tag
+      should edit a tag
+      should remove a tag
+      should raise error
+        on create if already exists
+        on remove if no exists
+    FluidDB::User
+      should return an User if exists
+      should raise an error if an User doesn't exists
 
 
 Sample Session
@@ -118,4 +118,11 @@ Disclaimer
    These is just two nights work for personal playing with fluiddb, so it is not full clean as good as production software (must be).
    Feel free to fork me.
    
+About
+-----
+  Based on the [work](http://github.com/ecarnevale/rb-fluidDB/tree/master) of [Emanuel Carnevale](http://twitter.com/onigiri)
+  
+Author
+------
+  Guillermo Álvarez Fernández ( guillermo@cientifico.net )
    
