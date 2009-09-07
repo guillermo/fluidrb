@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: FluidDB::Tag</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">FluidDB::Tag</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fluiddb/tag_rb.html">
+                lib/fluiddb/tag.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Resource.html">
+                Resource
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="124,101,201,149"      href="Resource.html" alt="Resource" />
+  <area shape="rect" coords="27,197,99,245"      href="User.html" alt="User" />
+  <area shape="rect" coords="123,197,195,245"      href="Tag.html" alt="Tag" />
+  <area shape="rect" coords="219,197,309,245"      href="Namespace.html" alt="Namespace" />
+  <area shape="rect" coords="119,5,207,53"      href="../OpenStruct.html" alt="OpenStruct" />
+  <area shape="rect" coords="232,5,309,53"      href="../Exception.html" alt="Exception" />
+  <area shape="rect" coords="235,101,307,149"      href="Error.html" alt="Error" />
+  <area shape="rect" coords="16,67,320,256"      href="../FluidDB.html" alt="FluidDB" />
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000008">create!</a>&nbsp;&nbsp;
+      <a href="#M000012">destroy!</a>&nbsp;&nbsp;
+      <a href="#M000010">fetch</a>&nbsp;&nbsp;
+      <a href="#M000009">find</a>&nbsp;&nbsp;
+      <a href="#M000011">update!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">create!</span><span class="method-args">(tag,description,indexed = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/tag.rb, line 4</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">tag</span>,<span class="ruby-identifier">description</span>,<span class="ruby-identifier">indexed</span> = <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>).<span class="ruby-identifier">last</span>
+      
+      <span class="ruby-identifier">new_tag</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/tags/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">path</span>, <span class="ruby-identifier">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>, <span class="ruby-identifier">:indexed</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">indexed</span>)
+      <span class="ruby-identifier">new_tag</span>.<span class="ruby-identifier">post!</span>(<span class="ruby-identifier">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>, <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">:indexed</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">indexed</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">find</span><span class="method-args">(tag)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/tag.rb, line 12</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">tag</span>)
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/tags/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">tag</span>).<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">destroy!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/tag.rb, line 26</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy!</span>
+      <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">delete!</span>
+      <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">fetch</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/tag.rb, line 16</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>
+      <span class="ruby-identifier">get!</span>(<span class="ruby-identifier">:returnDescription</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">update!</span><span class="method-args">(description)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/tag.rb, line 21</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>(<span class="ruby-identifier">description</span>)
+      <span class="ruby-identifier">put!</span>(<span class="ruby-identifier">:description=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">description</span>)
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

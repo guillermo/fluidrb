@@ -1,0 +1,109 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    FluidDB__Resource -> FluidDB__User [
+
+    ]
+
+    FluidDB__Resource -> FluidDB__Tag [
+
+    ]
+
+    FluidDB__Resource -> FluidDB__Namespace [
+
+    ]
+
+    OpenStruct [
+        URL = "classes/OpenStruct.html",
+        label = "OpenStruct"
+    ]
+
+    OpenStruct -> FluidDB__Resource [
+
+    ]
+
+    Exception [
+        URL = "classes/Exception.html",
+        label = "Exception"
+    ]
+
+    Exception -> FluidDB__Error [
+
+    ]
+
+    FluidDB__Resource -> FluidDB__Object [
+
+    ]
+
+    subgraph cluster_FluidDB {
+        fillcolor = palegreen1
+        URL = "classes/FluidDB.html"
+        fontname = Arial
+        color = blue
+        label = "FluidDB"
+        style = filled
+        FluidDB [
+            shape = plaintext,
+            height = 0.01,
+            width = 0.01,
+            label = ""
+        ]
+
+        FluidDB__User [
+            fontcolor = black,
+            URL = "classes/FluidDB/User.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "User"
+        ]
+
+        FluidDB__Tag [
+            fontcolor = black,
+            URL = "classes/FluidDB/Tag.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Tag"
+        ]
+
+        FluidDB__Namespace [
+            fontcolor = black,
+            URL = "classes/FluidDB/Namespace.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Namespace"
+        ]
+
+        FluidDB__Resource [
+            fontcolor = black,
+            URL = "classes/FluidDB/Resource.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Resource"
+        ]
+
+        FluidDB__Error [
+            fontcolor = black,
+            URL = "classes/FluidDB/Error.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Error"
+        ]
+
+    }
+
+}
+
