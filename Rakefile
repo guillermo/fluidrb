@@ -43,22 +43,41 @@ begin
   require File.join(File.dirname(__FILE__),'lib','fluiddb','version.rb')
   
   Echoe.new('fluidrb',FluidDB::VERSION) do |p|
-    # p.description    = "Ruby FluidDB Api"
+    p.description    = "Ruby FluidDB Api"
     p.summary        = "Ruby api for access to FluidDB Api"
     p.url            = "http://wiki.github.com/guillermo/fluidrb"
     p.author         = "Guillermo Álvarez"
-    # p.email          = "guillermo@cientifico.net"
-    # p.version        = FluidDB::VERSION
-    #p.docs_host
-    #p.rdoc_pattern
+    p.email          = "guillermo@cientifico.net"
     p.runtime_dependencies = ["json >= 1.1.3"]
-    # p.ignore_pattern = FileList[".gitignore"]
+    p.ignore_pattern = `cat .gitignore`.split
     
   end
   
   desc 'Prepare, commit and push to github'
   task :deploy => [:spec, :clean, :clobber, :git_clean, :manifest, :build_gemspec,:commit,:push]
   
+  desc 'Commit and generate doc'
+  task :commit_doc => [:git_reset, :rdoc, :checkout_gh_pages, :commit, :push, :checkout_master] 
+  
+  
+  Rake::RDocTask.new do |rd|
+    rd.rdoc_files.include("lib/**/*.rb","lib/*.rb")
+    rd.options << '-d'
+  end
+  
+  
+  task :checkout_master do
+    `git checkout master`
+  end
+  
+  task :checkout_gh_pages do
+    `git checkout gh-pages`
+  end
+  
+  task :git_reset do 
+    `git reset --hard`
+  end
+    
   task :push do
     puts "Uploading changes"
     `git push origin `
