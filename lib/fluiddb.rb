@@ -9,8 +9,9 @@ require 'ostruct'
 
 
 require 'fluiddb/version'
-require 'fluiddb/error'
 require 'fluiddb/connection'
+require 'fluiddb/fluiddb'
+require 'fluiddb/error'
 require 'fluiddb/resource'
 
 require 'fluiddb/object'

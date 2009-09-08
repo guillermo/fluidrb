@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../lib/fluiddb'
 
-FluidDB.set_credentials('test','test','sandbox.fluidinfo.com')
+FluidDB.connect(:test)
 
 
 def generate_uniq
