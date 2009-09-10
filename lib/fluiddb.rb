@@ -1,6 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 require 'rubygems'
-require 'json'
+require 'yajl'
 require 'net/http'
 require 'net/https'
 require 'uri'

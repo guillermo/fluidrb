@@ -2,8 +2,7 @@
 module FluidDB
   
   # FluidDB Object
-  class Object
-    
+  class Object    
     ID_FORMAT = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89AB][0-9a-f]{3}-[0-9a-f]{12}$/i
     
     # Creates a new object.
@@ -17,7 +16,8 @@ module FluidDB
     
     def self.get(id,options={})
       obj = (options[:connection] || FluidDB.connection).get("/objects/#{id}")
-      new(options.merge(obj))
+      obj = { :value => obj } unless obj.is_a? Hash
+      new(options.merge(obj).merge(:id=>id))
     end
     
     def initialize(options)
@@ -30,13 +30,32 @@ module FluidDB
     end
     
     def about
-      @options[:about] ||= @options[:connection].get("/objects/#{@objects[:id]}/fluiddb/about")
+      @options[:about] ||= @options[:connection].get("/objects/#{@options[:id]}/fluiddb/about")
     end
     
     def tag_paths
       @options[:connection].get("/objects/#{@options[:id]}")[:tagPaths]
     end
+    
+    def write_tag(tag,value = nil)
+      @options[:connection].put("/objects/#{@options[:id]}/#{tag}",:payload => value)
+      value
+    end
+    
+    def read_tag(tag)
+      @options[:connection].get("/objects/#{@options[:id]}/#{tag}")
+    end
+    
+    def remove_tag(tag)
+      @options[:connection].delete("/objects/#{@options[:id]}/#{tag}")
+    end
       
+    def have_tag?(tag)
+      @options[:connection].head("/objects/#{@options[:id]}/#{tag}")
+      true
+    rescue FluidDB::Error
+      false
+    end
     
     #         
     # # Create a new object.
