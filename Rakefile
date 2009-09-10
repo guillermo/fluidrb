@@ -12,7 +12,7 @@ require 'rake/clean'
 
 require 'spec/rake/spectask'
 
-task :default => :"spec"
+task :default => :spec
 
 desc "Run all specs in spec directory"
 Spec::Rake::SpecTask.new(:spec) do |t|
@@ -48,7 +48,7 @@ begin
     p.url            = "http://wiki.github.com/guillermo/fluidrb"
     p.author         = "Guillermo Álvarez"
     p.email          = "guillermo@cientifico.net"
-    p.runtime_dependencies = ["json >= 1.1.3"]
+    p.runtime_dependencies = ["brianmario-yajl-ruby >= 0.6.3"]
     p.ignore_pattern = `cat .gitignore`.split
     
   end

@@ -74,20 +74,17 @@ module FluidDB
       uri = URI.parse(path)
       uri.query = URI.encode((options[:query] || {}).map {|k,v| "#{k}=#{v}"}.join('&'))      
       
-      payload = [:post,:put].include?(method) ?  (options[:payload] || {}).to_json : nil
+      payload = [:post,:put].include?(method) ?  Yajl::Encoder.encode(options[:payload].nil? ? {} : options[:payload]) : nil
       
       $stderr << "#{method.to_s.upcase}: #{uri.to_s} (#{payload.inspect}, #{headers.inspect})\n" if $debug
 
-      req = Net::HTTP.const_get(method.to_s.capitalize).new(path, headers)
+      req = Net::HTTP.const_get(method.to_s.capitalize).new(uri.to_s, headers)
       req.basic_auth(@params[:username],@params[:password])
       res = @connection.request(req,payload)
 
-      case MIME::Type.simplified(res['content-type']) 
-        when 'application/json'
-          data = symbolize_keys(JSON.parse(res.body)) if res.body
-        else
-          data = res.body if res.body
-      end
+      data = res.body || ""
+      data = Yajl::Parser.parse(data) if MIME::Type.simplified(res['content-type']) == 'application/json'
+      data = symbolize_keys(data) if data.is_a?(Hash)
       
       $stderr << "#{res.code}: #{data.inspect}\n" if $debug
 
