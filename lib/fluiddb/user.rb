@@ -1,5 +1,5 @@
 module FluidDB
-  class User < Resource
+  class User #:nodoc:
     def self.find(name)
       new(:path => '/users/'+name).fetch
     end
