@@ -1,0 +1,22 @@
+
+2009-09-14
+  * CHANGELOG: Add CHANGELOG (Guillermo Álvarez)
+  * lib/fluiddb/tag.rb, spec/tag_spec.rb: Refactor tag (Guillermo Álvarez)
+
+2009-09-10
+  * lib/fluiddb.rb, lib/fluiddb/object.rb, spec/object_spec.rb: Finish refactoring FDB::Object (Guillermo Álvarez)
+  * Rakefile, lib/fluiddb/connection.rb: Change json library to brianmario-yajl-ruby library because (Guillermo Álvarez)
+
+2009-09-09
+  * 7 files updated: Refactor Object (Guillermo Álvarez)
+
+2009-09-07
+  * .gitignore, Rakefile: Update Rakefile (Guillermo Álvarez)
+
+2009-09-06
+  * 12 files updated: Automatic build for 0.0.1 (Guillermo Álvarez)
+  * README.md, fluidrb.gemspec, lib/fluiddb/version.rb: Automatic build for 0.0.2 (Guillermo Álvarez)
+  * 22 files updated: initial import (Guillermo Álvarez)
+  * Manifest, fluidrb.gemspec, lib/fluiddb/version.rb: Rebuild gemspec without signing key (Guillermo Álvarez)
+  * Manifest: Automatic build for 0.0.3 (Guillermo Álvarez)
+
