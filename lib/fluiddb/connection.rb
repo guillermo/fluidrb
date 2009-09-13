@@ -1,6 +1,6 @@
 
 module FluidDB
-  # HTTP Backend
+  # HTTP 1.1 Connection to fluid servers.
   class Connection
   
     # Default Params
@@ -23,11 +23,11 @@ module FluidDB
     #   FluidDB::Connection.new(:test) #will use the sandbox
     #   
     # Params:
-    #  * :username 
-    #  * :password
-    #  * :server
-    #  * :schema   # Could be 'http' or 'https'
-    #  * :port  # Change default port (443 for https and 80 for http)
+    # * __username__
+    # * __password__
+    # * __server__
+    # * __schema__  Could be 'http' or 'https'
+    # * __port__ Change default port (443 for https and 80 for http)
     def initialize(args)
       @params = args == :test ? SANDBOX : DEFAULT.merge(args)
       @params[:port] ||= @params[:scheme] == 'https' ? 443 : 80

@@ -1,5 +1,5 @@
 module FluidDB
-  class Namespace < Resource
+  class Namespace #:nodoc:
     
     def self.create!(namespace,description)
       path = namespace.split('/')[0..-2].join('/')

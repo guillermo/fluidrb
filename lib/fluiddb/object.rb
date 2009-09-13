@@ -2,54 +2,69 @@
 module FluidDB
   
   # FluidDB Object
-  class Object    
+  class Object
     ID_FORMAT = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89AB][0-9a-f]{3}-[0-9a-f]{12}$/i
     
     # Creates a new object.
+    #
+    #   FluidDB::Object.create(:about => 'my new wadus object')  => #<FluidDB::Object>
+    #
     # Params:
-    #  * about => Optional about
-    #  * connection => Optional server
+    # __about__:: Optional about
+    # __connection__:: Optional server
     def self.create(options = {})
-      obj = (options[:connection] || FluidDB.connection).post('/objects',{:payload => options})
+      connection = options.delete(:connection) || FluidDB.connection
+      obj = connection.post('/objects',{:payload => options})
       new(options.merge(obj))
     end
     
+    # Return an FluidDB::Object
+    #
+    #   FluidDB::Object.get("6073550f-4125-4603-b3be-02b68d7b01e6")  => #<FluidDB::Object>
+    #
+    # If the object can't be found it raises FluidDB::Error
+    #
+    # __Params__:
+    # __connection__ => Optional server
     def self.get(id,options={})
       obj = (options[:connection] || FluidDB.connection).get("/objects/#{id}")
       obj = { :value => obj } unless obj.is_a? Hash
       new(options.merge(obj).merge(:id=>id))
     end
     
-    def initialize(options)
-      @options = options
-      @options[:connection] ||= FluidDB.connection
-    end
     
+    # Return current object id
     def id
       @options[:id]
     end
     
+    # Return lazy loaded about
     def about
       @options[:about] ||= @options[:connection].get("/objects/#{@options[:id]}/fluiddb/about")
     end
     
+    # Return lazy loaded tagpats
     def tag_paths
       @options[:connection].get("/objects/#{@options[:id]}")[:tagPaths]
     end
     
+    # Write a tag to the current object
     def write_tag(tag,value = nil)
       @options[:connection].put("/objects/#{@options[:id]}/#{tag}",:payload => value)
       value
     end
     
+    # Return the value of a tag
     def read_tag(tag)
       @options[:connection].get("/objects/#{@options[:id]}/#{tag}")
     end
     
+    # Remove the tag
     def remove_tag(tag)
       @options[:connection].delete("/objects/#{@options[:id]}/#{tag}")
     end
       
+    # Check if the object has a tag
     def have_tag?(tag)
       @options[:connection].head("/objects/#{@options[:id]}/#{tag}")
       true
@@ -57,64 +72,11 @@ module FluidDB
       false
     end
     
-    #         
-    # # Create a new object.
-    # # FluidDB::Object.create!
-    # # FluidDB::Object.create!(:about => 'Cocacola')
-    # def self.create!(opts = {})
-    #   new(opts.merge(:path => '/objects')).post!(opts)
-    # end
-    # 
-    # def self.find(query)      
-    #   res = FluidDB.query(:get, "/objects", {}, {:query => query})[:ids] || []
-    #   res.map{|o| self.new(:path => "/objects/#{o}")}
-    # end
-    # 
-    # # Fetch the object from the server
-    # def fetch
-    #   merge_with_self(get!)
-    #   self
-    # end
-    # 
-    #     
-    # # Return the value of a tag
-    # # fluiddbobj / "user/opinion"  => 'Really nice'
-    # def / (tag)
-    #   Object.new(:path => self.path + "/"+tag ).value
-    # end
-    # 
-    # # Simple form to fetch tags
-    # # fluiddbobj.user.opinion.fetch! => 'Really nice'
-    # # fluiddbobj.user.opinion = 'Not Really nice'
-    # def method_missing(meth,*args)
-    #   if meth.to_s =~ /=$/
-    #     obj = Object.new(:path => self.path+"/"+ meth.to_s.gsub(/=$/,''))
-    #     obj.update!(*args)
-    #   else
-    #     obj = (super || Object.new(:path => self.path+"/"+meth.to_s ))
-    #   end
-    #   obj
-    # end
-    # 
-    # def value
-    #   @table[:value] || fetch
-    #   @table[:value]
-    # end
-    # 
-    # # Update the value of a tag
-    # def update!(value)
-    #   put!({:value=>value})
-    #   self
-    # end
-    # 
-    # # Return an array of names that that object contains
-    # def tags
-    #   @table[:tagPaths] || fetch
-    #   @table[:tagPaths].map do |tag|
-    #     Object.new(:path => @table[:path]+'/'+tag)
-    #   end
-    # end
-    # 
+
+    def initialize(options)  #:nodoc:
+      @options = options
+      @options[:connection] ||= FluidDB.connection
+    end    
   end
 end
 
