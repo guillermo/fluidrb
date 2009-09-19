@@ -3,7 +3,7 @@ module FluidDB
     
     # Creates a new tag.
     #
-    #   FluidDB::Tag.create(namepsace, :indexed => ture, :description => 'good', :name => 'tag_name')  => #<FluidDB::Tag>
+    #   FluidDB::Tag.create('test', :indexed => ture, :description => 'good', :name => 'tag_name')  => #<FluidDB::Tag>
     #
     # Params:
     # __name__:: Tag name
@@ -15,6 +15,7 @@ module FluidDB
       obj = connection.post("/tags/#{namespace}",:payload => options)
       new({:connection => connection, :namespace => namespace}.merge(options).merge(obj))
     end
+    
     
     def initialize(options = {}) #:nodoc:
       @options = options

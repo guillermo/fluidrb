@@ -18,7 +18,7 @@ require 'fluiddb/user'
 require 'fluiddb/tag'
 require 'fluiddb/namespace'
 require 'fluiddb/policy'
-
+require 'fluiddb/permission'
 
 
 # = FluidDB
