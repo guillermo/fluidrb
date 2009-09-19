@@ -65,8 +65,8 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                <a href="Resource.html">
-                Resource
+                <a href="Object.html">
+                Object
                </a>
             </td>
         </tr>
@@ -81,14 +81,15 @@
   <div id="contextContent">
     <div id="diagram">
       <map id="map" name="map">
-  <area shape="rect" coords="124,101,201,149"      href="Resource.html" alt="Resource" />
-  <area shape="rect" coords="27,197,99,245"      href="User.html" alt="User" />
-  <area shape="rect" coords="123,197,195,245"      href="Tag.html" alt="Tag" />
-  <area shape="rect" coords="219,197,309,245"      href="Namespace.html" alt="Namespace" />
-  <area shape="rect" coords="119,5,207,53"      href="../OpenStruct.html" alt="OpenStruct" />
-  <area shape="rect" coords="232,5,309,53"      href="../Exception.html" alt="Exception" />
-  <area shape="rect" coords="235,101,307,149"      href="Error.html" alt="Error" />
-  <area shape="rect" coords="16,67,320,256"      href="../FluidDB.html" alt="FluidDB" />
+  <area shape="rect" coords="675,5,752,53"      href="../Exception.html" alt="Exception" />
+  <area shape="rect" coords="677,101,749,149"      href="Error.html" alt="Error" />
+  <area shape="rect" coords="557,101,629,149"      href="User.html" alt="User" />
+  <area shape="rect" coords="461,101,533,149"      href="Tag.html" alt="Tag" />
+  <area shape="rect" coords="349,101,437,149"      href="Permission.html" alt="Permission" />
+  <area shape="rect" coords="235,101,325,149"      href="Namespace.html" alt="Namespace" />
+  <area shape="rect" coords="139,101,211,149"      href="Policy.html" alt="Policy" />
+  <area shape="rect" coords="27,101,115,149"      href="Connection.html" alt="Connection" />
+  <area shape="rect" coords="16,67,760,160"      href="../FluidDB.html" alt="FluidDB" />
 </map>
 <img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
     </div>
@@ -101,8 +102,10 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000007">fetch</a>&nbsp;&nbsp;
-      <a href="#M000006">find</a>&nbsp;&nbsp;
+      <a href="#M000003">get</a>&nbsp;&nbsp;
+      <a href="#M000006">id</a>&nbsp;&nbsp;
+      <a href="#M000005">name</a>&nbsp;&nbsp;
+      <a href="#M000004">username</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -124,23 +127,27 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
 
         <div class="method-heading">
-          <a href="#M000006" class="method-signature">
-          <span class="method-name">find</span><span class="method-args">(name)</span>
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">get</span><span class="method-args">(username,options ={})</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Return an user by its <a href="User.html#M000004">username</a>
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 3</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">name</span>)
-      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/users/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">name</span>).<span class="ruby-identifier">fetch</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 4</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">username</span>,<span class="ruby-identifier">options</span> ={})
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:connection</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>
+      <span class="ruby-identifier">new</span>( {<span class="ruby-identifier">:username</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>}.<span class="ruby-identifier">merge</span>( <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/users/#{username}&quot;</span>) ) )
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -149,24 +156,78 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="#M000007" class="method-signature">
-          <span class="method-name">fetch</span><span class="method-args">()</span>
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">id</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Return the <a href="User.html#M000006">id</a>
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000007-source">
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 7</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-identifier">get!</span>
-      <span class="ruby-keyword kw">self</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 20</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:id</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the <a href="User.html#M000005">name</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 15</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">name</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:name</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">username</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the <a href="User.html#M000004">username</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/user.rb, line 10</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">username</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:username</span>]
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

@@ -10,37 +10,12 @@ digraph TopLevel {
         color = black
     ]
 
-    FluidDB__Resource -> FluidDB__User [
-
-    ]
-
-    FluidDB__Resource -> FluidDB__Tag [
-
-    ]
-
-    FluidDB__Resource -> FluidDB__Namespace [
-
-    ]
-
-    OpenStruct [
-        URL = "classes/OpenStruct.html",
-        label = "OpenStruct"
-    ]
-
-    OpenStruct -> FluidDB__Resource [
-
-    ]
-
     Exception [
         URL = "classes/Exception.html",
         label = "Exception"
     ]
 
     Exception -> FluidDB__Error [
-
-    ]
-
-    FluidDB__Resource -> FluidDB__Object [
 
     ]
 
@@ -76,6 +51,15 @@ digraph TopLevel {
             label = "Tag"
         ]
 
+        FluidDB__Permission [
+            fontcolor = black,
+            URL = "classes/FluidDB/Permission.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Permission"
+        ]
+
         FluidDB__Namespace [
             fontcolor = black,
             URL = "classes/FluidDB/Namespace.html",
@@ -85,13 +69,13 @@ digraph TopLevel {
             label = "Namespace"
         ]
 
-        FluidDB__Resource [
+        FluidDB__Policy [
             fontcolor = black,
-            URL = "classes/FluidDB/Resource.html",
+            URL = "classes/FluidDB/Policy.html",
             shape = ellipse,
             color = palegoldenrod,
             style = filled,
-            label = "Resource"
+            label = "Policy"
         ]
 
         FluidDB__Error [
@@ -101,6 +85,15 @@ digraph TopLevel {
             color = palegoldenrod,
             style = filled,
             label = "Error"
+        ]
+
+        FluidDB__Connection [
+            fontcolor = black,
+            URL = "classes/FluidDB/Connection.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Connection"
         ]
 
     }

@@ -65,8 +65,8 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                <a href="Resource.html">
-                Resource
+                <a href="Object.html">
+                Object
                </a>
             </td>
         </tr>
@@ -81,14 +81,15 @@
   <div id="contextContent">
     <div id="diagram">
       <map id="map" name="map">
-  <area shape="rect" coords="124,101,201,149"      href="Resource.html" alt="Resource" />
-  <area shape="rect" coords="27,197,99,245"      href="User.html" alt="User" />
-  <area shape="rect" coords="123,197,195,245"      href="Tag.html" alt="Tag" />
-  <area shape="rect" coords="219,197,309,245"      href="Namespace.html" alt="Namespace" />
-  <area shape="rect" coords="119,5,207,53"      href="../OpenStruct.html" alt="OpenStruct" />
-  <area shape="rect" coords="232,5,309,53"      href="../Exception.html" alt="Exception" />
-  <area shape="rect" coords="235,101,307,149"      href="Error.html" alt="Error" />
-  <area shape="rect" coords="16,67,320,256"      href="../FluidDB.html" alt="FluidDB" />
+  <area shape="rect" coords="675,5,752,53"      href="../Exception.html" alt="Exception" />
+  <area shape="rect" coords="677,101,749,149"      href="Error.html" alt="Error" />
+  <area shape="rect" coords="557,101,629,149"      href="User.html" alt="User" />
+  <area shape="rect" coords="461,101,533,149"      href="Tag.html" alt="Tag" />
+  <area shape="rect" coords="349,101,437,149"      href="Permission.html" alt="Permission" />
+  <area shape="rect" coords="235,101,325,149"      href="Namespace.html" alt="Namespace" />
+  <area shape="rect" coords="139,101,211,149"      href="Policy.html" alt="Policy" />
+  <area shape="rect" coords="27,101,115,149"      href="Connection.html" alt="Connection" />
+  <area shape="rect" coords="16,67,760,160"      href="../FluidDB.html" alt="FluidDB" />
 </map>
 <img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
     </div>
@@ -101,13 +102,17 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000013">create!</a>&nbsp;&nbsp;
-      <a href="#M000017">destroy!</a>&nbsp;&nbsp;
-      <a href="#M000015">fetch</a>&nbsp;&nbsp;
-      <a href="#M000014">find</a>&nbsp;&nbsp;
-      <a href="#M000019">namespaces</a>&nbsp;&nbsp;
-      <a href="#M000018">tags</a>&nbsp;&nbsp;
-      <a href="#M000016">update!</a>&nbsp;&nbsp;
+      <a href="#M000022">create</a>&nbsp;&nbsp;
+      <a href="#M000024">delete</a>&nbsp;&nbsp;
+      <a href="#M000025">description</a>&nbsp;&nbsp;
+      <a href="#M000026">description=</a>&nbsp;&nbsp;
+      <a href="#M000023">get</a>&nbsp;&nbsp;
+      <a href="#M000027">id</a>&nbsp;&nbsp;
+      <a href="#M000028">name</a>&nbsp;&nbsp;
+      <a href="#M000030">namespace</a>&nbsp;&nbsp;
+      <a href="#M000031">namespaceNames</a>&nbsp;&nbsp;
+      <a href="#M000029">path</a>&nbsp;&nbsp;
+      <a href="#M000032">tagNames</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -129,50 +134,105 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
-          <span class="method-name">create!</span><span class="method-args">(namespace,description)</span>
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">create</span><span class="method-args">(namespace,options)</span>
           </a>
         </div>
       
         <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
+          <p>
+Creates a new <a href="Namespace.html#M000030">namespace</a>.
+</p>
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 4</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">namespace</span>,<span class="ruby-identifier">description</span>)
-      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
-      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>).<span class="ruby-identifier">last</span>
+  FluidDB::Namespace.create(namepsace, :name =&gt; 'namespace_name', :description =&gt; 'my new namespace')  =&gt; #&lt;FluidDB::Namespace&gt;
+</pre>
+<p>
+Params:
+</p>
+<table>
+<tr><td valign="top"><em><a href="Namespace.html#M000030">namespace</a></em>:</td><td>Base <a href="Namespace.html#M000030">namespace</a>
+
+</td></tr>
+<tr><td valign="top"><em><a href="Namespace.html#M000028">name</a></em>:</td><td>New <a href="Namespace.html#M000030">namespace</a> <a
+href="Namespace.html#M000028">name</a>
+
+</td></tr>
+<tr><td valign="top"><em><a href="Namespace.html#M000025">description</a></em>:</td><td><a href="Namespace.html">Namespace</a> <a
+href="Namespace.html#M000025">description</a>
+
+</td></tr>
+<tr><td valign="top"><em>connection</em>:</td><td>Optional server
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 13</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">namespace</span>,<span class="ruby-identifier">options</span>)      
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:connection</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>
       
-      <span class="ruby-identifier">new_namespace</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/namespaces/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">path</span>)
-      <span class="ruby-identifier">new_namespace</span>.<span class="ruby-identifier">post!</span>(<span class="ruby-identifier">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>, <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/namespaces/#{namespace}&quot;</span>, <span class="ruby-identifier">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">new</span>({<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{namespace}/#{options[:name]}&quot;</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">obj</span>))
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
-          <span class="method-name">find</span><span class="method-args">(namespace)</span>
+          <a href="#M000023" class="method-signature">
+          <span class="method-name">get</span><span class="method-args">(namespace, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
+          <p>
+Get a <a href="Namespace.html#M000030">namespace</a>. If not found, it will
+raise FluidDB::Error
+</p>
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 12</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">namespace</span>)
-      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/namespaces/#{namespace}&quot;</span>).<span class="ruby-identifier">fetch</span>
+   FluidDB::Namespace.get('test/opinion', :returnTags =&gt; true)
+</pre>
+<p>
+Params:
+</p>
+<table>
+<tr><td valign="top"><em><a href="Namespace.html#M000030">namespace</a></em>:</td><td><a href="Namespace.html">Namespace</a> to fetch
+
+</td></tr>
+<tr><td valign="top">__:returnTags =&gt; true__:</td><td>Also fetch the tags inside this <a
+href="Namespace.html#M000030">namespace</a>.
+
+</td></tr>
+<tr><td valign="top">__:returnDescription =&gt; true__:</td><td>Also fetch the <a href="Namespace.html#M000025">description</a> for the <a
+href="Namespace.html#M000030">namespace</a>.
+
+</td></tr>
+<tr><td valign="top">__:returnNamespaces =&gt; true__:</td><td>Also fetch the namespaces inside this <a
+href="Namespace.html#M000030">namespace</a>
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 29</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:connection</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>
+      
+      <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;/namespaces/#{namespace}&quot;</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">get</span>( <span class="ruby-identifier">path</span>, <span class="ruby-identifier">:query</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">new</span>({<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">namespace</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">obj</span>))
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -181,122 +241,232 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000017" class="method-detail">
-        <a name="M000017"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000017" class="method-signature">
-          <span class="method-name">destroy!</span><span class="method-args">()</span>
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">delete</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Remove the current <a href="Namespace.html#M000030">namespace</a> and
+return true if success
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000017-source">
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 26</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy!</span>
-      <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">delete!</span>
-      <span class="ruby-keyword kw">true</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 45</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/namespaces/#{path}&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">true</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000015" class="method-detail">
-        <a name="M000015"></a>
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
 
         <div class="method-heading">
-          <a href="#M000015" class="method-signature">
-          <span class="method-name">fetch</span><span class="method-args">()</span>
+          <a href="#M000025" class="method-signature">
+          <span class="method-name">description</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Return the <a href="Namespace.html#M000030">namespace</a> <a
+href="Namespace.html#M000025">description</a>. If not found it will fetch
+it.
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000015-source">
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 16</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-identifier">get!</span>(<span class="ruby-identifier">:returnDescription</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:returnNamespaces</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:returnTags</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
-      <span class="ruby-keyword kw">self</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 50</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">description</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:description</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">:description</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="#M000019" class="method-signature">
-          <span class="method-name">namespaces</span><span class="method-args">()</span>
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">description=</span><span class="method-args">(new_desc)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Update the <a href="Namespace.html#M000025">description</a> of the current
+<a href="Namespace.html#M000030">namespace</a>
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000019-source">
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 36</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:namespaceNames</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:namespaceNames</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:namespaceNames</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-        <span class="ruby-constant">Namespace</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:path</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">'/'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>)
-      <span class="ruby-keyword kw">end</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 55</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">description=</span>(<span class="ruby-identifier">new_desc</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/namespaces/#{path}&quot;</span>, <span class="ruby-identifier">:payload</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_desc</span>})
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:description</span>] = <span class="ruby-identifier">new_desc</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000018" class="method-detail">
-        <a name="M000018"></a>
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
 
         <div class="method-heading">
-          <a href="#M000018" class="method-signature">
-          <span class="method-name">tags</span><span class="method-args">()</span>
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">id</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Return the object <a href="Namespace.html#M000027">id</a> of the <a
+href="Namespace.html#M000030">namespace</a>
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000018-source">
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 31</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:tagNames</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:tagNames</span>]
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 61</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:id</span>] 
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000016" class="method-detail">
-        <a name="M000016"></a>
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
 
         <div class="method-heading">
-          <a href="#M000016" class="method-signature">
-          <span class="method-name">update!</span><span class="method-args">(description)</span>
+          <a href="#M000028" class="method-signature">
+          <span class="method-name">name</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Rerturn the <a href="Namespace.html#M000028">name</a> of the <a
+href="Namespace.html#M000030">namespace</a>
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000016-source">
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 21</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>(<span class="ruby-identifier">description</span>)
-      <span class="ruby-identifier">put!</span>(<span class="ruby-identifier">:description=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">description</span>)
-      <span class="ruby-keyword kw">self</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 66</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">name</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:name</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <span class="method-name">namespace</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Namespace.html#M000029">path</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="#M000031" class="method-signature">
+          <span class="method-name">namespaceNames</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the collection of namespaces inside current. If not found, it will
+fetch.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 77</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaceNames</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:namespaceNames</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">:namespaceNames</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="#M000029" class="method-signature">
+          <span class="method-name">path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the path/namespace of the <a
+href="Namespace.html#M000030">namespace</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 71</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:path</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">tagNames</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the tags inside this <a href="Namespace.html#M000030">namespace</a>.
+If not found, it will fetch
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/namespace.rb, line 82</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tagNames</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:tagNames</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">:tagNames</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

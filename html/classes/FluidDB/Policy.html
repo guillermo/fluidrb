@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: FluidDB::Policy</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">FluidDB::Policy</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fluiddb/policy_rb.html">
+                lib/fluiddb/policy.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="675,5,752,53"      href="../Exception.html" alt="Exception" />
+  <area shape="rect" coords="677,101,749,149"      href="Error.html" alt="Error" />
+  <area shape="rect" coords="557,101,629,149"      href="User.html" alt="User" />
+  <area shape="rect" coords="461,101,533,149"      href="Tag.html" alt="Tag" />
+  <area shape="rect" coords="349,101,437,149"      href="Permission.html" alt="Permission" />
+  <area shape="rect" coords="235,101,325,149"      href="Namespace.html" alt="Namespace" />
+  <area shape="rect" coords="139,101,211,149"      href="Policy.html" alt="Policy" />
+  <area shape="rect" coords="27,101,115,149"      href="Connection.html" alt="Connection" />
+  <area shape="rect" coords="16,67,760,160"      href="../FluidDB.html" alt="FluidDB" />
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000038">exceptions</a>&nbsp;&nbsp;
+      <a href="#M000037">exceptions=</a>&nbsp;&nbsp;
+      <a href="#M000033">get</a>&nbsp;&nbsp;
+      <a href="#M000036">policy</a>&nbsp;&nbsp;
+      <a href="#M000035">policy=</a>&nbsp;&nbsp;
+      <a href="#M000034">update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="#M000033" class="method-signature">
+          <span class="method-name">get</span><span class="method-args">(policy,options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get a <a href="Policy.html#M000036">policy</a> You can also set
+options[:connection] to use a specific connection
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 6</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">policy</span>,<span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:connection</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>
+      <span class="ruby-identifier">new</span>({<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">policy</span>, <span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">connection</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/policies/#{policy}&quot;</span>)))
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="#M000038" class="method-signature">
+          <span class="method-name">exceptions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns current <a href="Policy.html#M000038">exceptions</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 38</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exceptions</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:exceptions</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="#M000037" class="method-signature">
+          <span class="method-name">exceptions=</span><span class="method-args">(new_exceptions)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Update <a href="Policy.html#M000038">exceptions</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exceptions=</span>(<span class="ruby-identifier">new_exceptions</span>)
+      <span class="ruby-identifier">update</span>(<span class="ruby-identifier">policy</span>, <span class="ruby-identifier">new_exceptions</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:exceptions</span>] = <span class="ruby-identifier">new_exceptions</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="#M000036" class="method-signature">
+          <span class="method-name">policy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return current <a href="Policy.html#M000036">policy</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 27</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">policy</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:policy</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="#M000035" class="method-signature">
+          <span class="method-name">policy=</span><span class="method-args">(new_policy)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Update a <a href="Policy.html#M000036">policy</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 21</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">policy=</span>(<span class="ruby-identifier">new_policy</span>)
+      <span class="ruby-identifier">update</span>(<span class="ruby-identifier">new_policy</span>,<span class="ruby-identifier">exceptions</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:policy</span>] = <span class="ruby-identifier">new_policy</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="#M000034" class="method-signature">
+          <span class="method-name">update</span><span class="method-args">(policy,exceptions)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Update <a href="Policy.html#M000036">policy</a> and <a
+href="Policy.html#M000038">exceptions</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/policy.rb, line 16</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">policy</span>,<span class="ruby-identifier">exceptions</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/policies/#{@options[:path]}&quot;</span>, <span class="ruby-identifier">:payload</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:exceptions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exceptions</span>, <span class="ruby-identifier">:policy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">policy</span>}) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -65,8 +65,8 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                <a href="Resource.html">
-                Resource
+                <a href="Object.html">
+                Object
                </a>
             </td>
         </tr>
@@ -81,14 +81,15 @@
   <div id="contextContent">
     <div id="diagram">
       <map id="map" name="map">
-  <area shape="rect" coords="124,101,201,149"      href="Resource.html" alt="Resource" />
-  <area shape="rect" coords="27,197,99,245"      href="User.html" alt="User" />
-  <area shape="rect" coords="123,197,195,245"      href="Tag.html" alt="Tag" />
-  <area shape="rect" coords="219,197,309,245"      href="Namespace.html" alt="Namespace" />
-  <area shape="rect" coords="119,5,207,53"      href="../OpenStruct.html" alt="OpenStruct" />
-  <area shape="rect" coords="232,5,309,53"      href="../Exception.html" alt="Exception" />
-  <area shape="rect" coords="235,101,307,149"      href="Error.html" alt="Error" />
-  <area shape="rect" coords="16,67,320,256"      href="../FluidDB.html" alt="FluidDB" />
+  <area shape="rect" coords="675,5,752,53"      href="../Exception.html" alt="Exception" />
+  <area shape="rect" coords="677,101,749,149"      href="Error.html" alt="Error" />
+  <area shape="rect" coords="557,101,629,149"      href="User.html" alt="User" />
+  <area shape="rect" coords="461,101,533,149"      href="Tag.html" alt="Tag" />
+  <area shape="rect" coords="349,101,437,149"      href="Permission.html" alt="Permission" />
+  <area shape="rect" coords="235,101,325,149"      href="Namespace.html" alt="Namespace" />
+  <area shape="rect" coords="139,101,211,149"      href="Policy.html" alt="Policy" />
+  <area shape="rect" coords="27,101,115,149"      href="Connection.html" alt="Connection" />
+  <area shape="rect" coords="16,67,760,160"      href="../FluidDB.html" alt="FluidDB" />
 </map>
 <img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
     </div>
@@ -107,14 +108,15 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000030">/</a>&nbsp;&nbsp;
-      <a href="#M000027">create!</a>&nbsp;&nbsp;
-      <a href="#M000029">fetch</a>&nbsp;&nbsp;
-      <a href="#M000028">find</a>&nbsp;&nbsp;
-      <a href="#M000031">method_missing</a>&nbsp;&nbsp;
-      <a href="#M000034">tags</a>&nbsp;&nbsp;
-      <a href="#M000033">update!</a>&nbsp;&nbsp;
-      <a href="#M000032">value</a>&nbsp;&nbsp;
+      <a href="#M000049">about</a>&nbsp;&nbsp;
+      <a href="#M000046">create</a>&nbsp;&nbsp;
+      <a href="#M000047">get</a>&nbsp;&nbsp;
+      <a href="#M000054">have_tag?</a>&nbsp;&nbsp;
+      <a href="#M000048">id</a>&nbsp;&nbsp;
+      <a href="#M000052">read_tag</a>&nbsp;&nbsp;
+      <a href="#M000053">remove_tag</a>&nbsp;&nbsp;
+      <a href="#M000050">tag_paths</a>&nbsp;&nbsp;
+      <a href="#M000051">write_tag</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -126,6 +128,19 @@
     <div id="section">
 
 
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ID_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89AB][0-9a-f]{3}-[0-9a-f]{12}$/i</td>
+        </tr>
+        </table>
+      </div>
+    </div>
 
 
 
@@ -136,51 +151,79 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000027" class="method-detail">
-        <a name="M000027"></a>
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
 
         <div class="method-heading">
-          <a href="#M000027" class="method-signature">
-          <span class="method-name">create!</span><span class="method-args">(opts = {})</span>
+          <a href="#M000046" class="method-signature">
+          <span class="method-name">create</span><span class="method-args">(options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Create a new object. FluidDB::Object.create! FluidDB::Object.create!(:about
-=&gt; &#8216;Cocacola&#8217;)
+Creates a new object.
 </p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000027-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 10</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">opts</span> = {})
-      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/objects'</span>)).<span class="ruby-identifier">post!</span>(<span class="ruby-identifier">opts</span>)
+  FluidDB::Object.create(:about =&gt; 'my new wadus object')  =&gt; #&lt;FluidDB::Object&gt;
+</pre>
+<p>
+Params:
+</p>
+<table>
+<tr><td valign="top"><em><a href="Object.html#M000049">about</a></em>:</td><td>Optional <a href="Object.html#M000049">about</a>
+
+</td></tr>
+<tr><td valign="top"><em>connection</em>:</td><td>Optional server
+
+</td></tr>
+</table>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 15</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:connection</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">'/objects'</span>,{<span class="ruby-identifier">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>})
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">obj</span>))
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000028" class="method-detail">
-        <a name="M000028"></a>
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
 
         <div class="method-heading">
-          <a href="#M000028" class="method-signature">
-          <span class="method-name">find</span><span class="method-args">(query)</span>
+          <a href="#M000047" class="method-signature">
+          <span class="method-name">get</span><span class="method-args">(id,options={})</span>
           </a>
         </div>
       
         <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000028-source">
+          <p>
+Return an <a href="Object.html">FluidDB::Object</a>
+</p>
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 14</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">query</span>)      
-      <span class="ruby-identifier">res</span> = <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">:get</span>, <span class="ruby-value str">&quot;/objects&quot;</span>, {}, {<span class="ruby-identifier">:query</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">query</span>})[<span class="ruby-identifier">:ids</span>] <span class="ruby-operator">||</span> []
-      <span class="ruby-identifier">res</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/objects/#{o}&quot;</span>)}
+  FluidDB::Object.get(&quot;6073550f-4125-4603-b3be-02b68d7b01e6&quot;)  =&gt; #&lt;FluidDB::Object&gt;
+</pre>
+<p>
+If the object can&#8216;t be found it raises FluidDB::Error
+</p>
+<p>
+<em>Params</em>: <em>connection</em> =&gt; Optional server
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 29</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">id</span>,<span class="ruby-identifier">options</span>={})
+      <span class="ruby-identifier">obj</span> = (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:connection</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">FluidDB</span>.<span class="ruby-identifier">connection</span>).<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/objects/#{id}&quot;</span>)
+      <span class="ruby-identifier">obj</span> = { <span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">obj</span> } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">obj</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">id</span>))
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -189,169 +232,186 @@ Create a new object. FluidDB::Object.create! FluidDB::Object.create!(:about
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000030" class="method-detail">
-        <a name="M000030"></a>
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
 
         <div class="method-heading">
-          <a href="#M000030" class="method-signature">
-          <span class="method-name">/</span><span class="method-args">(tag)</span>
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">about</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Return the <a href="Object.html#M000032">value</a> of a tag fluiddbobj /
-&quot;user/opinion&quot; =&gt; &#8216;Really nice&#8216;
+Return lazy loaded <a href="Object.html#M000049">about</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000030-source">
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 28</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">tag</span>)
-      <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">tag</span> ).<span class="ruby-identifier">value</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 42</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">about</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:about</span>] <span class="ruby-operator">||=</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}/fluiddb/about&quot;</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000029" class="method-detail">
-        <a name="M000029"></a>
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
 
         <div class="method-heading">
-          <a href="#M000029" class="method-signature">
-          <span class="method-name">fetch</span><span class="method-args">()</span>
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">have_tag?</span><span class="method-args">(tag)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Fetch the object from the server
+Check if the object has a tag
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000029-source">
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 20</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-identifier">merge_with_self</span>(<span class="ruby-identifier">get!</span>)
-      <span class="ruby-keyword kw">self</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 68</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">have_tag?</span>(<span class="ruby-identifier">tag</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">head</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}/#{tag}&quot;</span>)
+      <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">FluidDB</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+      <span class="ruby-keyword kw">false</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000031" class="method-detail">
-        <a name="M000031"></a>
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
 
         <div class="method-heading">
-          <a href="#M000031" class="method-signature">
-          <span class="method-name">method_missing</span><span class="method-args">(meth,*args)</span>
+          <a href="#M000048" class="method-signature">
+          <span class="method-name">id</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Simple form to <a href="Object.html#M000029">fetch</a> <a
-href="Object.html#M000034">tags</a> fluiddbobj.user.opinion.fetch! =&gt;
-&#8216;Really nice&#8217; fluiddbobj.user.opinion = &#8216;Not Really
-nice&#8216;
+Return current object <a href="Object.html#M000048">id</a>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000031-source">
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 35</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">meth</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">meth</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/=$/</span>
-        <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/&quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">meth</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/=$/</span>,<span class="ruby-value str">''</span>))
-        <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-identifier">obj</span> = (<span class="ruby-keyword kw">super</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">meth</span>.<span class="ruby-identifier">to_s</span> ))
-      <span class="ruby-keyword kw">end</span>
-      <span class="ruby-identifier">obj</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:id</span>]
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000034" class="method-detail">
-        <a name="M000034"></a>
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
 
         <div class="method-heading">
-          <a href="#M000034" class="method-signature">
-          <span class="method-name">tags</span><span class="method-args">()</span>
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">read_tag</span><span class="method-args">(tag)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Return an array of names that that object contains
+Return the value of a tag
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000034-source">
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 57</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:tagPaths</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:tagPaths</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span>
-        <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:path</span>]<span class="ruby-operator">+</span><span class="ruby-value str">'/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">tag</span>)
-      <span class="ruby-keyword kw">end</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 58</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_tag</span>(<span class="ruby-identifier">tag</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}/#{tag}&quot;</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000033" class="method-detail">
-        <a name="M000033"></a>
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
 
         <div class="method-heading">
-          <a href="#M000033" class="method-signature">
-          <span class="method-name">update!</span><span class="method-args">(value)</span>
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">remove_tag</span><span class="method-args">(tag)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Update the <a href="Object.html#M000032">value</a> of a tag
+Remove the tag
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000033-source">
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 51</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>(<span class="ruby-identifier">value</span>)
-      <span class="ruby-identifier">put!</span>({<span class="ruby-identifier">:value=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">value</span>})
-      <span class="ruby-keyword kw">self</span>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 63</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_tag</span>(<span class="ruby-identifier">tag</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}/#{tag}&quot;</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000032" class="method-detail">
-        <a name="M000032"></a>
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
 
         <div class="method-heading">
-          <a href="#M000032" class="method-signature">
-          <span class="method-name">value</span><span class="method-args">()</span>
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">tag_paths</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Return lazy loaded tagpats
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000032-source">
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 45</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:value</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fetch</span>
-      <span class="ruby-ivar">@table</span>[<span class="ruby-identifier">:value</span>]
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 47</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tag_paths</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}&quot;</span>)[<span class="ruby-identifier">:tagPaths</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">write_tag</span><span class="method-args">(tag,value = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Write a tag to the current object
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fluiddb/object.rb, line 52</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_tag</span>(<span class="ruby-identifier">tag</span>,<span class="ruby-identifier">value</span> = <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:connection</span>].<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/objects/#{@options[:id]}/#{tag}&quot;</span>,<span class="ruby-identifier">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>)
+      <span class="ruby-identifier">value</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
