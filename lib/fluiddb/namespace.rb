@@ -1,43 +1,79 @@
 module FluidDB
   class Namespace #:nodoc:
     
-    def self.create!(namespace,description)
-      path = namespace.split('/')[0..-2].join('/')
-      name = namespace.split('/').last
+    def self.create(namespace,options)      
+      connection = options.delete(:connection) || FluidDB.connection
       
-      new_namespace = new(:path => '/namespaces/'+path)
-      new_namespace.post!(:description => description, :name => name)
+      obj = connection.post("/namespaces/#{namespace}", :payload => options)
+      new({:connection => connection, :path => "#{namespace}/#{options[:name]}"}.merge(options).merge(obj))
     end
     
-    def self.find(namespace)
-      new(:path => "/namespaces/#{namespace}").fetch
+    def self.get(namespace, options = {})
+      connection = options.delete(:connection) || FluidDB.connection
+      
+      path = "/namespaces/#{namespace}"
+      obj = connection.get( path, :query => options)
+      new({:connection => connection, :path => namespace}.merge(options).merge(obj))
     end
     
-    def fetch
-      get!(:returnDescription => true, :returnNamespaces => true, :returnTags => true)
-      self
+    def initialize(options = {}) #:nodoc:
+      @options = options
+      @options[:connection] ||= FluidDB.connection
+      @options[:path] ||= @options[:namespace]
+      @options[:name] ||= @options[:path].split('/').last
     end
     
-    def update!(description)
-      put!(:description=>description)
-      self
+    def delete
+      @options[:connection].delete("/namespaces/#{path}") && true
     end
     
-    def destroy!
-      ret = delete!
-      true
-    end
-
-    def tags
-      @table[:tagNames] || fetch
-      @table[:tagNames]
+    def description
+      @options[:description] ||= fetch(:description)
     end
     
-    def namespaces
-      @table[:namespaceNames] || fetch
-      @table[:namespaceNames] && @table[:namespaceNames].map do |n|
-        Namespace.new(:path => @table[:path] + '/' + n)
+    def id
+      @options[:id] ||= fetch(:id)
+    end
+    
+    def name
+      @options[:name]
+    end
+    
+    def path
+      @options[:path]
+    end
+    
+    def namespace
+      path
+    end
+    
+    def namespaceNames
+      @options[:namespaceNames] ||= fetch(:namespaceNames)
+    end
+    
+    def tagNames
+      @options[:tagNames] ||= fetch(:tagNames)
+    end
+    
+    def fetch(what = :all)
+      options = {}
+      path = "/namespaces/#{namespace}"
+      c = @options[:connection]
+      case what
+      when :id
+        c.get( path )[:id]
+      when :description
+        c.get( path,:query => {:returnDescription => true} )[:description]
+      when :namespaceNames
+        c.get( path,:query => {:returnNamespaces => true} )[:namespaceNames]
+      when :tagNames
+        c.get( path,:query => {:returnTags => true} )[:tagNames]
+      else
+        options = { :returnDescription => true, :returnNamespaces => true, :returnTags => true }
+        @options.merge( c.get( path, :query => {:returnTags => true}))
+        self
       end
     end
+
   end
 end
