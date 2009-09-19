@@ -25,7 +25,7 @@ namespace :spec do
   Spec::Rake::SpecTask.new(:rcov) do |t|
     t.spec_files = FileList['spec/*_spec.rb']
     t.rcov = true
-    t.rcov_opts = ['--exclude', 'spec']
+    t.rcov_opts = ['--exclude', 'spec,gems']
   end
   
   desc "Print Specdoc for all specs"
@@ -57,14 +57,13 @@ begin
   task :deploy => [:spec, :clean, :clobber, :git_clean, :manifest, :build_gemspec,:commit,:push]
   
   desc 'Commit and generate doc'
-  task :commit_doc => [:git_reset, :rdoc, :checkout_gh_pages, :commit, :push, :checkout_master] 
+  task :commit_doc => [:git_reset, :rdoc, "spec:coverage", :checkout_gh_pages, :commit, :push, :checkout_master] 
   
   
   Rake::RDocTask.new do |rd|
     rd.rdoc_files.include("lib/**/*.rb","lib/*.rb")
     rd.options << '-d'
   end
-  
   
   task :checkout_master do
     `git checkout master`
