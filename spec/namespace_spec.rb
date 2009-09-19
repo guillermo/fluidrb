@@ -6,7 +6,7 @@ describe FluidDB::Namespace do
     @name = generate_uniq
     @description = "description of #{@name}"
     @created_namespace = FluidDB::Namespace.create('test',{ :description => @description, :name => @name})
-    @getted_namespace  = FluidDB::Namespace.get("test/#{@name}", :returnDescription => true)
+    @getted_namespace  = FluidDB::Namespace.get("test/#{@name}")
   end
   
 
@@ -20,6 +20,16 @@ describe FluidDB::Namespace do
 
   it 'should raise if tried to find a non existing namespace' do
     lambda { FluidDB::Tag.get('test/wadus/wadus')}.should raise_error(FluidDB::Error)
+  end
+  
+  it "should be able to update" do
+    name = generate_uniq('for-update')
+    new_desc = 'new description'
+    
+    ns = FluidDB::Namespace.create('test',{ :description => 'old desc', :name => name})
+    ns.description = new_desc
+    
+    FluidDB::Namespace.get("test/#{name}").description.should == new_desc
   end
   
   
