@@ -1,7 +1,22 @@
 
+2009-09-19
+  * lib/fluiddb/version.rb: Update version. This version is sponsorized by Fernando Guillén ( http://www.fernandoguillen.info/ ) (Guillermo Álvarez)
+  * lib/fluiddb.rb, lib/fluiddb/policy.rb, spec/policies_spec.rb: Implement policies (Guillermo Álvarez)
+  * lib/fluiddb.rb, lib/fluiddb/permission.rb, lib/fluiddb/tag.rb, spec/permission_spec.rb: Implement permissions (Guillermo Álvarez)
+  * Rakefile: Coverage just include own gem specs (Guillermo Álvarez)
+  * 5 files updated: Refactor FDB::Namespace (Guillermo Álvarez)
+  * lib/fluiddb/user.rb, spec/user_spec.rb: Refactor FDB::User (Guillermo Álvarez)
+  * lib/fluiddb/user.rb: Include user documentation (Guillermo Álvarez)
+  * lib/fluiddb/namespace.rb, spec/namespace_spec.rb: Add Namespace doc and implement description update (Guillermo Álvarez)
+
 2009-09-14
-  * CHANGELOG: Add CHANGELOG (Guillermo Álvarez)
   * lib/fluiddb/tag.rb, spec/tag_spec.rb: Refactor tag (Guillermo Álvarez)
+  * README, flag_template_colour.gif: Automatic build for 0.0.3 (Guillermo Álvarez)
+  * 6 files updated: Update rdoc documentation (Guillermo Álvarez)
+  * CHANGELOG: Add CHANGELOG (Guillermo Álvarez)
+  * lib/fluiddb/error.rb: Remove deprecated FDB::Error.check_errors (Guillermo Álvarez)
+  * lib/fluiddb/resource.rb: Remove deprecated SuperClass Resource (Guillermo Álvarez)
+  * lib/fluiddb/error.rb, lib/fluiddb/user.rb: Remove automatic generation of doc for untested classes (Guillermo Álvarez)
 
 2009-09-10
   * lib/fluiddb.rb, lib/fluiddb/object.rb, spec/object_spec.rb: Finish refactoring FDB::Object (Guillermo Álvarez)
@@ -14,9 +29,9 @@
   * .gitignore, Rakefile: Update Rakefile (Guillermo Álvarez)
 
 2009-09-06
-  * 12 files updated: Automatic build for 0.0.1 (Guillermo Álvarez)
   * README.md, fluidrb.gemspec, lib/fluiddb/version.rb: Automatic build for 0.0.2 (Guillermo Álvarez)
-  * 22 files updated: initial import (Guillermo Álvarez)
   * Manifest, fluidrb.gemspec, lib/fluiddb/version.rb: Rebuild gemspec without signing key (Guillermo Álvarez)
+  * 12 files updated: Automatic build for 0.0.1 (Guillermo Álvarez)
   * Manifest: Automatic build for 0.0.3 (Guillermo Álvarez)
+  * 22 files updated: initial import (Guillermo Álvarez)
 
