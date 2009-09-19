@@ -2,19 +2,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fluidrb}
-  s.version = "0.0.3"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Guillermo \303\201lvarez"]
-  s.date = %q{2009-09-06}
-  s.description = %q{Ruby api for access to FluidDB Api}
-  s.email = %q{}
-  s.executables = ["fluiddb", "fluiddb-sandbox"]
-  s.extra_rdoc_files = ["README.md", "bin/fluiddb", "bin/fluiddb-sandbox", "lib/fluiddb.rb", "lib/fluiddb/connection.rb", "lib/fluiddb/console/common.rb", "lib/fluiddb/console/console.rb", "lib/fluiddb/console/sandbox.rb", "lib/fluiddb/error.rb", "lib/fluiddb/namespace.rb", "lib/fluiddb/object.rb", "lib/fluiddb/resource.rb", "lib/fluiddb/tag.rb", "lib/fluiddb/user.rb", "lib/fluiddb/version.rb"]
-  s.files = ["Manifest", "README.md", "Rakefile", "bin/fluiddb", "bin/fluiddb-sandbox", "fluidrb.gemspec", "lib/fluiddb.rb", "lib/fluiddb/connection.rb", "lib/fluiddb/console/common.rb", "lib/fluiddb/console/console.rb", "lib/fluiddb/console/sandbox.rb", "lib/fluiddb/error.rb", "lib/fluiddb/namespace.rb", "lib/fluiddb/object.rb", "lib/fluiddb/resource.rb", "lib/fluiddb/tag.rb", "lib/fluiddb/user.rb", "lib/fluiddb/version.rb", "spec/namespace_spec.rb", "spec/object_spec.rb", "spec/spec_helper.rb", "spec/tag_spec.rb", "spec/user_spec.rb"]
+  s.date = %q{2009-09-19}
+  s.description = %q{Ruby FluidDB Api}
+  s.email = %q{guillermo@cientifico.net}
+  s.files = ["fluidrb.gemspec", "Rakefile"]
   s.has_rdoc = true
   s.homepage = %q{http://wiki.github.com/guillermo/fluidrb}
-  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Fluidrb", "--main", "README.md"]
+  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Fluidrb", "--main", "README"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{fluidrb}
   s.rubygems_version = %q{1.3.1}
@@ -25,11 +23,11 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<json>, [">= 0", "= 1.1.3"])
+      s.add_runtime_dependency(%q<brianmario-yajl-ruby>, [">= 0", "= 0.6.3"])
     else
-      s.add_dependency(%q<json>, [">= 0", "= 1.1.3"])
+      s.add_dependency(%q<brianmario-yajl-ruby>, [">= 0", "= 0.6.3"])
     end
   else
-    s.add_dependency(%q<json>, [">= 0", "= 1.1.3"])
+    s.add_dependency(%q<brianmario-yajl-ruby>, [">= 0", "= 0.6.3"])
   end
 end
